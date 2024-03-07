@@ -14,9 +14,6 @@ def process_file(filename):
     df = pd.read_csv(filename)
     df['language'] = ''
 
-    df['message'] = df['message'].apply(lambda x: re.sub(r'\b\w+@\w+\.\w+\b', 'email', x))
-    df['message'] = df['message'].apply(lambda x: re.sub(r'\d', '0', x))
-
     for idx, row in df.iterrows():
         message = row['message']
         language = detect_language(message)
